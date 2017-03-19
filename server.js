@@ -6,15 +6,6 @@ const app = express();
 
 app.use(compression());
 
-// https to http redirect
-app.use((req, res, next) => {
-  if (req.url && req.url.includes('www.nick.ng')) {
-    const newUrl = req.url.replace('www.nick.ng', 'nick.ng');
-    return res.redirect(`https://${req.headers.host}${newUrl}`);
-  }
-  return next();
-});
-
 // serve static files
 app.use(express.static('dist'));
 
@@ -26,5 +17,5 @@ app.use((req, res) => {
 // starting listening
 const port = process.env.PORT || 3434;
 app.listen(port, () => {
-  console.log(`Website server listening on ${port}.`);
+  console.log(`Website server listening on ${port}.`); // eslint-disable-line no-console
 });
