@@ -9,7 +9,5 @@ module.exports = {
         "import"
     ],
     "rules": {
-        // windows Git can be configured to automatically replace CRLF with LF
-        "linebreak-style": "off",
     }
 };
