@@ -1,17 +1,19 @@
 import React, { PropTypes } from 'react';
 
-const MenuButton = ({
-  onClick,
-  label,
-}) => {
-  const styles = {
-    button: {
-      fontSize: '5vmin',
-      minWidth: '24vmin',
-      minHeight: '24vmin',
-      margin: '1vmin',
-    },
-  };
+const styles = {
+  button: {
+    fontSize: '5vmin',
+    minWidth: '24vmin',
+    minHeight: '24vmin',
+    margin: '1vmin',
+  },
+};
+
+const MenuButton = (props) => {
+  const {
+    onClick,
+    label,
+  } = props;
 
   return (
     <button
