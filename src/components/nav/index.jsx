@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import NavLink from '../NavLink';
+import NavLink from '../nav-link';
 
 export default function Nav(props) {
   return (

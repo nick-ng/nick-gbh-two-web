@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const plugins = [
   new HtmlWebpackPlugin({
-    title: 'Nick Ng',
+    title: 'Nick&rsquo;s Guildball Health Tracker 2',
     favicon: `${__dirname}/favicon.ico`,
     template: './index.html',
     inject: 'true',
@@ -21,11 +21,14 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/entry.js',
+  entry: './src/entry.jsx',
   output: {
     path: `${__dirname}/dist`,
     filename: 'bundle.js',
     publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   module: {
     loaders: [
@@ -42,9 +45,12 @@ module.exports = {
         },
       },
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        query: {
+          presets: ['react', 'es2015'],
+        },
       },
       {
         test: /\.json$/,
