@@ -2,20 +2,20 @@ import React, { PropTypes } from 'react';
 
 import MenuButton from '../menu-button';
 
-import gameRoom from '../../services/game-room';
-
 const styles = {
   menu: {},
 };
 
-console.log('hostGame', gameRoom);
-
-const Menu = () => (
+const Menu = ({ handleNewGameRequest }) => (
   <div style={styles.menu}>
-    <MenuButton label={'Host Game'} onClick={gameRoom.hostGame} />
+    <MenuButton label={'Host Game'} onClick={handleNewGameRequest} />
     <MenuButton label={'Two'} />
     <MenuButton label={'Three'} />
   </div>
 );
+
+Menu.propTypes = {
+  handleNewGameRequest: PropTypes.func.isRequired,
+}
 
 export default Menu;

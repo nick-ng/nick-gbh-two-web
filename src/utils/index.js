@@ -20,7 +20,7 @@ const get = (url, jsonData, headers) => {
       'Content-Type': 'application/json',
     }, headers),
     method: 'post',
-    mode: 'no-cors',
+    mode: 'cors',
     body: JSON.stringify(jsonData),
   })
   .then(res => processResponse(res));

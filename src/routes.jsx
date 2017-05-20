@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './components/app/';
-import Menu from './components/menu';
+import MenuContainer from './containers/menu-container';
 
 export default function getRouter(store) {
   const history = syncHistoryWithStore(browserHistory, store);
@@ -11,7 +11,7 @@ export default function getRouter(store) {
   return (
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Menu} />
+        <IndexRoute component={MenuContainer} />
       </Route>
     </Router>
   );
