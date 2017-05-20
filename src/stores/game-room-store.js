@@ -21,11 +21,12 @@ const gameRoomState = state => state.gameRoomStore;
 
 export const getGameRoom = createSelector(
   gameRoomState,
-  g => g.get('gameRoom'),
+  g => g.get('gameId'),
 );
 
 // Actions
-export function getNewGameRoom(coachId = null) {
+export function getNewGameRoom() {
+  const coachId = 'hello';
   return (dispatch) => {
     gameRoom.hostGame(coachId)
       .then((res) => {
@@ -36,15 +37,11 @@ export function getNewGameRoom(coachId = null) {
             coachId: res.coachId,
           },
         });
-        return res;
       });
   };
 }
 
 // Reducers
 export default createReducer(initialState, {
-  [UPDATE_ROOM_ID]: (state, action) => {
-    console.log('Updating room information', action.payload);
-    state.set('gameId', action.payload.gameId);
-  },
+  [UPDATE_ROOM_ID]: (state, action) => state.set('gameId', action.payload.gameId),
 });

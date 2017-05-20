@@ -13,18 +13,16 @@ const processResponse = (response) => {
   return response.text();
 };
 
-const get = (url, jsonData, headers) => {
-  return fetch(url, {
-    headers: Object.assign({
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    }, headers),
-    method: 'post',
-    mode: 'cors',
-    body: JSON.stringify(jsonData),
-  })
-  .then(res => processResponse(res));
-};
+const get = (url, jsonData, headers) => fetch(url, {
+  headers: Object.assign({
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }, headers),
+  method: 'post',
+  mode: 'cors',
+  body: JSON.stringify(jsonData),
+})
+.then(res => processResponse(res));
 
 export default {
   get,

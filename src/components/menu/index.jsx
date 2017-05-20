@@ -3,7 +3,9 @@ import React, { PropTypes } from 'react';
 import MenuButton from '../menu-button';
 
 const styles = {
-  menu: {},
+  menu: {
+    display: 'flex',
+  },
 };
 
 const Menu = ({ handleNewGameRequest }) => (

@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react';
 const styles = {
   button: {
     fontSize: '5vmin',
-    minWidth: '24vmin',
-    minHeight: '24vmin',
+    width: '24vmin',
+    height: '24vmin',
     margin: '1vmin',
   },
 };
@@ -28,7 +28,7 @@ const MenuButton = (props) => {
 export default MenuButton;
 
 MenuButton.propTypes = {
-  onClick: PropTypes.function,
+  onClick: PropTypes.func,
   label: PropTypes.string,
 };
 
