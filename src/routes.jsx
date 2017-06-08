@@ -4,6 +4,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import AppContainer from './containers/app-container';
 import MenuContainer from './containers/menu-container';
+import CardViewerContainer from './containers/card-viewer-container';
 
 export default function getRouter(store) {
   const history = syncHistoryWithStore(browserHistory, store);
@@ -12,6 +13,7 @@ export default function getRouter(store) {
     <Router history={history}>
       <Route path="/" component={AppContainer}>
         <IndexRoute component={MenuContainer} />
+        <Route path="/card-viewer" component={CardViewerContainer} />
       </Route>
     </Router>
   );
