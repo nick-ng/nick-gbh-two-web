@@ -5,7 +5,7 @@
 dump.rdb
 
 # Secret Environment file
-secret.env
+.env
 
 # Logs
 logs

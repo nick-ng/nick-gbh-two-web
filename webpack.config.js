@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const plugins = [
   new HtmlWebpackPlugin({
@@ -7,6 +8,10 @@ const plugins = [
     favicon: `${__dirname}/favicon.ico`,
     template: './index.html',
     inject: 'true',
+  }),
+  new Dotenv({
+    path: './.env', // Path to .env file (this is the default)
+    safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
   }),
 ];
 if (process.env.NODE_ENV === 'production') {
@@ -21,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/entry.jsx',
+  entry: ['babel-polyfill', './src/entry.jsx'],
   output: {
     path: `${__dirname}/dist`,
     filename: 'bundle.js',
@@ -49,7 +54,11 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react', 'es2015'],
+          presets: ['react', ['env', {
+            targets: {
+              browsers: ['chrome >= 23', 'safari >= 4'],
+            },
+          }]],
         },
       },
       {
