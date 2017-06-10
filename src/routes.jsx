@@ -6,9 +6,8 @@ import AppContainer from './containers/app-container';
 import MenuContainer from './containers/menu-container';
 import CardViewerContainer from './containers/card-viewer-container';
 
-export default function getRouter(store) {
+const getRouter = store => {
   const history = syncHistoryWithStore(browserHistory, store);
-
   return (
     <Router history={history}>
       <Route path="/" component={AppContainer}>
@@ -18,3 +17,5 @@ export default function getRouter(store) {
     </Router>
   );
 }
+
+export default getRouter;

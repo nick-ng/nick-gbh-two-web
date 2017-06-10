@@ -4,6 +4,9 @@
 # Redis
 dump.rdb
 
+# Secret Environment file
+.env
+
 # Logs
 logs
 *.log
