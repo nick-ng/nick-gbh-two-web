@@ -1,6 +1,9 @@
 {
   "name": "nick-gbh-two-web",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.1.0"
+  },
   "description": "A frontend to connect to Nick's Guild Ball Health server",
   "main": "./src/entry.js",
   "scripts": {
