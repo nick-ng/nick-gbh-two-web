@@ -1,8 +1,8 @@
 import utils from '../utils';
 // import config from '../config';
 
-const getAllEntries = async (spaceId = process.env.CONTENTFUL_SPACE) => {
-  const allEntries = await utils.get(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`);
+const getAllEntries = async (spaceId = 'asdf') => {
+  const allEntries = await utils.get(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=asdf`);
   console.log('allEntries', allEntries);
   return allEntries;
 };
@@ -10,5 +10,3 @@ const getAllEntries = async (spaceId = process.env.CONTENTFUL_SPACE) => {
 export default {
   getAllEntries,
 };
-
-getAllEntries();
