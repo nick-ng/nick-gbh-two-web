@@ -2,46 +2,40 @@ import { createReducer } from 'redux-immutablejs';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
+import { getAllPlayers } from '../services/contentful';
 import constants from './constants';
 
 // Constants
 const {
-    CHANGE_CARD,
-    FLIP_CARD,
+    UPDATE_CONTENT,
 } = constants;
 
 // Initial State
 const initialState = Immutable.fromJS({
-  playerName: '',
-  showFront: true,
+  players: null,
+  guilds: null,
 });
 
 // Selectors
-const cardDisplayState = state => state.cardDisplayStore;
+const contentState = state => state.contentStore;
 
-export const showCardFront = createSelector(
-  cardDisplayState,
-  c => c.get('showFront'),
+export const getContent = contentName => createSelector(
+  contentState,
+  c => c.get(contentName),
 );
 
 // Actions
-export const changeCard = playerName => dispatch => dispatch({
-  type: CHANGE_CARD,
-  payload: {
-    playerName,
-    showFront: true,
-  },
-});
-
-export const flipCard = () => (dispatch, getState) => dispatch({
-  type: FLIP_CARD,
-  payload: {
-    showFront: !showCardFront(getState),
-  },
-});
+export const updatePlayers = () => async (dispatch) => {
+  const players = Immutable.fromJS(await getAllPlayers());
+  dispatch({
+    type: UPDATE_CONTENT,
+    payload: {
+      players,
+    },
+  });
+};
 
 // Reducers
 export default createReducer(initialState, {
-  [CHANGE_CARD]: (state, action) => state.merge(Immutable.fromJS(action.payload)),
-  [FLIP_CARD]: (state, action) => state.merge(Immutable.fromJS(action.payload)),
+  [UPDATE_CONTENT]: (state, action) => state.merge(Immutable.fromJS(action.payload)),
 });
