@@ -8,7 +8,7 @@ import CardViewer from '../components/card-viewer';
 import { getCurrentCard, changeCard } from '../stores/card-display-store';
 import { getContent } from '../stores/content-store';
 
-const CardViewerContainer = props => <CardViewer {...props} />;
+const CardViewerContainer = (props) => <CardViewer {...props} />;
 
 CardViewerContainer.propTypes = {
   currentPlayerName: PropTypes.string,
@@ -22,11 +22,11 @@ CardViewerContainer.defaultProps = {
 };
 
 export default connect(
-  state => ({
+  (state) => ({
     currentPlayerName: getCurrentCard(state),
     allPlayers: getContent('players')(state),
   }),
-  dispatch => ({
-    changeCard: playerName => dispatch(changeCard(playerName)),
+  (dispatch) => ({
+    changeCard: (playerName) => dispatch(changeCard(playerName)),
   }),
 )(CardViewerContainer);

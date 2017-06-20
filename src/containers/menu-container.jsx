@@ -23,10 +23,10 @@ MenuContainer.defaultProps = {
 };
 
 export default connect(
-  state => ({
+  (state) => ({
     gameId: getGameRoom(state),
   }),
-  dispatch => ({
-    handleNewGameRequest: coachId => dispatch(getNewGameRoom(coachId)),
+  (dispatch) => ({
+    handleNewGameRequest: (coachId) => dispatch(getNewGameRoom(coachId)),
   }),
 )(MenuContainer);

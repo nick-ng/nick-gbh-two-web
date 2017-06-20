@@ -3,11 +3,10 @@ import config from '../config';
 
 const { contentfulProxyUrl } = config;
 
-export const getAllPlayers = async () => {
-  const allEntries = await utils.get(`${contentfulProxyUrl}/player-list`);
-  return allEntries;
-};
+const getFromContentfulProxy = (route) => utils.get(`${contentfulProxyUrl}/${route}`);
 
-export default {
-  getAllPlayers,
-};
+export const getAllPlayers = () => getFromContentfulProxy('players');
+
+export const getAllGuilds = () => getFromContentfulProxy('guilds');
+
+export default getFromContentfulProxy;

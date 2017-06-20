@@ -21,7 +21,7 @@ const get = (url, headers = {}) => fetch(url, {
   method: 'get',
   mode: 'cors',
 })
-.then(res => processResponse(res));
+.then((res) => processResponse(res));
 
 const post = (url, jsonData = {}, headers = {}) => fetch(url, {
   headers: Object.assign({
@@ -32,7 +32,7 @@ const post = (url, jsonData = {}, headers = {}) => fetch(url, {
   mode: 'cors',
   body: JSON.stringify(jsonData),
 })
-.then(res => processResponse(res));
+.then((res) => processResponse(res));
 
 export default {
   get,

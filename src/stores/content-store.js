@@ -17,15 +17,25 @@ const initialState = Immutable.fromJS({
 });
 
 // Selectors
-const contentState = state => state.contentStore;
+const contentState = (state) => state.contentStore;
 
-export const getContent = contentName => createSelector(
+export const getContent = (contentName) => createSelector(
   contentState,
-  c => c.get(contentName),
+  (c) => c.get(contentName),
 );
 
 // Actions
 export const updatePlayers = () => async (dispatch) => {
+  const players = Immutable.fromJS(await getAllPlayers());
+  dispatch({
+    type: UPDATE_CONTENT,
+    payload: {
+      players,
+    },
+  });
+};
+
+export const updateGuilds = () => async (dispatch) => {
   const players = Immutable.fromJS(await getAllPlayers());
   dispatch({
     type: UPDATE_CONTENT,

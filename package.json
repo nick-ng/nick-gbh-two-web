@@ -12,6 +12,7 @@
     "build": "NODE_ENV=production webpack",
     "heroku-postbuild": "npm run build",
     "eslint": "eslint ./src",
+    "esflint": "eslint ./src --fix",
     "server": "node ./server.js"
   },
   "repository": {
