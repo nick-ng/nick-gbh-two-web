@@ -25,7 +25,7 @@ const CardViewer = ({ currentPlayerName, changeCard, allPlayers }) => (
   <div style={styles.cardViewer}>
     <div>{currentPlayerName ? allPlayers.get(currentPlayerName).get('fullName') : 'Choose a player'}</div>
     <div style={styles.playerList}>
-      {allPlayers && allPlayers.toList().map(player => (
+      {allPlayers && allPlayers.toList().map((player) => (
         <button
           style={styles.button}
           onClick={() => changeCard(player.get('name'))}

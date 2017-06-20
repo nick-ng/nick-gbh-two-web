@@ -5,6 +5,11 @@ const defaultSettings = {
 
   // contentfulProxyUrl: 'http://localhost:4001',
   contentfulProxyUrl: 'https://nick-gbh-contentful-proxy-s.herokuapp.com',
+
+  contentList: [
+    'players',
+    'guilds',
+  ],
 };
 
 export default ((env) => {
