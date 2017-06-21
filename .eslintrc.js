@@ -9,5 +9,6 @@ module.exports = {
         "import"
     ],
     "rules": {
+        "arrow-parens": [2, "always"]
     }
 };

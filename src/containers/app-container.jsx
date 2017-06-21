@@ -25,7 +25,7 @@ AppContainer.defaultProps = {
 };
 
 export default connect(
-  state => ({
+  (state) => ({
     gameId: getGameRoom(state),
   }),
   () => ({}),

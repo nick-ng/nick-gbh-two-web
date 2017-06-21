@@ -17,11 +17,11 @@ const initialState = Immutable.fromJS({
 });
 
 // Selectors
-const gameRoomState = state => state.gameRoomStore;
+const gameRoomState = (state) => state.gameRoomStore;
 
 export const getGameRoom = createSelector(
   gameRoomState,
-  g => g.get('gameId'),
+  (g) => g.get('gameId'),
 );
 
 // Actions

@@ -17,20 +17,20 @@ const initialState = Immutable.fromJS({
 });
 
 // Selectors
-const cardDisplayState = state => state.cardDisplayStore;
+const cardDisplayState = (state) => state.cardDisplayStore;
 
 export const getCurrentCard = createSelector(
   cardDisplayState,
-  c => c.get('playerName'),
+  (c) => c.get('playerName'),
 );
 
 export const showCardFront = createSelector(
   cardDisplayState,
-  c => c.get('showFront'),
+  (c) => c.get('showFront'),
 );
 
 // Actions
-export const changeCard = playerName => dispatch => dispatch({
+export const changeCard = (playerName) => (dispatch) => dispatch({
   type: CHANGE_CARD,
   payload: {
     playerName,

@@ -2,35 +2,48 @@ import { createReducer } from 'redux-immutablejs';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
-import { getAllPlayers } from '../services/contentful';
-import constants from './constants';
+import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../services/contentful';
+
+const storeSuffix = '-CONTENT_STORE';
 
 // Constants
-const {
-    UPDATE_CONTENT,
-} = constants;
+export const UPDATE_CONTENT = `UPDATE_CONTENT${storeSuffix}`;
 
 // Initial State
-const initialState = Immutable.fromJS({
-  players: null,
-  guilds: null,
-});
+const initialState = Immutable.fromJS({});
 
 // Selectors
-const contentState = state => state.contentStore;
+const contentState = (state) => state.contentStore;
 
-export const getContent = contentName => createSelector(
+export const getContent = (contentName) => createSelector(
   contentState,
-  c => c.get(contentName),
+  (c) => c.get(contentName),
 );
 
 // Actions
+export const updateContent = (contentName) => async (dispatch) => dispatch({
+  type: UPDATE_CONTENT,
+  payload: {
+    [contentName]: Immutable.fromJS(await getFromContentfulProxy(contentName)),
+  },
+});
+
 export const updatePlayers = () => async (dispatch) => {
   const players = Immutable.fromJS(await getAllPlayers());
   dispatch({
     type: UPDATE_CONTENT,
     payload: {
       players,
+    },
+  });
+};
+
+export const updateGuilds = () => async (dispatch) => {
+  const guilds = Immutable.fromJS(await getAllGuilds());
+  dispatch({
+    type: UPDATE_CONTENT,
+    payload: {
+      guilds,
     },
   });
 };
