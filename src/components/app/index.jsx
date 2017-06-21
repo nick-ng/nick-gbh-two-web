@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 const styles = {
   appStyle: {
-    color: 'red',
-    padding: '5rem 10rem',
+    padding: '0',
     fontSize: '1rem',
   },
   title: {
-    color: 'blue',
     padding: '0',
+    margin: '1vh 0',
     fontSize: '10vh',
   },
 };

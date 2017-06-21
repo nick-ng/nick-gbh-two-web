@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import PlayerChooserContainer from '../../containers/player-chooser-container';
+
 const styles = {
   cardViewer: {
     display: 'flex',
@@ -21,26 +23,15 @@ const styles = {
   },
 };
 
-const CardViewer = ({ currentPlayerName, changeCard, allPlayers }) => (
+const CardViewer = ({ currentPlayerName, allPlayers }) => (
   <div style={styles.cardViewer}>
-    <div>{currentPlayerName ? allPlayers.get(currentPlayerName).get('fullName') : 'Choose a player'}</div>
-    <div style={styles.playerList}>
-      {allPlayers && allPlayers.toList().map((player) => (
-        <button
-          style={styles.button}
-          onClick={() => changeCard(player.get('name'))}
-          key={player.get('name')}
-        >
-          {player.get('shortName')}
-        </button>
-        ))}
-    </div>
+    <h2>{currentPlayerName ? allPlayers.get(currentPlayerName).get('fullName') : 'Choose a player'}</h2>
+    <PlayerChooserContainer />
   </div>
 );
 
 CardViewer.propTypes = {
   currentPlayerName: PropTypes.string.isRequired,
-  changeCard: PropTypes.func.isRequired,
   allPlayers: ImmutablePropTypes.map,
 };
 
