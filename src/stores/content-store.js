@@ -20,7 +20,7 @@ const contentState = (state) => state.contentStore;
 
 export const getContent = (contentName) => createSelector(
   contentState,
-  (c) => c.get(contentName),
+  (c) => c.get(contentName) && c.get(contentName).sort((a, b) => a.get('name').localeCompare(b.get('name'))),
 );
 
 // Actions

@@ -23,9 +23,14 @@ const styles = {
     fontSize: '3vmin',
     margin: '0.2vh',
     padding: '1vh',
+    color: 'black',
+    backgroundColor: 'lightGrey',
+    borderStyle: 'outset',
   },
   pressedButton: {
-    outline: 'black 0.1rem solid',
+    color: 'white',
+    backgroundColor: 'dimgrey',
+    borderStyle: 'inset',
   },
 };
 
