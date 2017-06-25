@@ -17,7 +17,7 @@ const styles = {
     flex: '1 1 100%',
     padding: '0',
     margin: '1vh 0 0',
-    fontSize: '5vh',
+    fontSize: '3vh',
   },
   button: {
     fontSize: '3vmin',
@@ -25,7 +25,7 @@ const styles = {
     padding: '1vh',
   },
   pressedButton: {
-    borderColor: 'black',
+    outline: 'black 0.1rem solid',
   },
 };
 

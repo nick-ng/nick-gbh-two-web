@@ -1,2 +1,8 @@
 body {
+  margin: 0;
+}
+
+button:active,
+button:focus {
+  outline: none;
 }

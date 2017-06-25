@@ -5,6 +5,7 @@ import CardDisplayContainer from '../../containers/card-display-container';
 
 const styles = {
   cardViewer: {
+    flex: '1',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',

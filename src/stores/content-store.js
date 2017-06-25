@@ -4,6 +4,11 @@ import Immutable from 'immutable';
 
 import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../interfaces/contentful';
 
+export const contentList = [
+  'players',
+  'guilds',
+];
+
 // Constants
 export const UPDATE_CONTENT = 'UPDATE_CONTENT';
 
