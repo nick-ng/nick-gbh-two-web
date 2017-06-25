@@ -3,9 +3,11 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import config from './config';
+
+import CardViewer from './components/card-viewer';
+
 import AppContainer from './containers/app-container';
 import MenuContainer from './containers/menu-container';
-import CardViewerContainer from './containers/card-viewer-container';
 
 import { getContent, updateContent } from './stores/content-store';
 
@@ -24,7 +26,7 @@ const getRouter = (store) => {
     <Router history={history}>
       <Route path="/" component={AppContainer} onEnter={() => loadContent(store)}>
         <IndexRoute component={MenuContainer} />
-        <Route path="/card-viewer" component={CardViewerContainer} />
+        <Route path="/card-viewer" component={CardViewer} />
       </Route>
     </Router>
   );

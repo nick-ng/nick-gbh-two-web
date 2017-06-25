@@ -2,13 +2,11 @@ import { createReducer } from 'redux-immutablejs';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
-import constants from './constants';
+import { getContent } from './content-store';
 
 // Constants
-const {
-    CHANGE_CARD,
-    FLIP_CARD,
-} = constants;
+const CHANGE_CARD = 'CHANGE_CARD';
+const FLIP_CARD = 'FLIP_CARD';
 
 // Initial State
 const initialState = Immutable.fromJS({
@@ -24,7 +22,13 @@ export const getCurrentCard = createSelector(
   (c) => c.get('playerName'),
 );
 
-export const showCardFront = createSelector(
+export const getCurrentPlayer = createSelector(
+  getCurrentCard,
+  getContent('players'),
+  (playerName, allPlayers) => allPlayers && allPlayers.get(playerName),
+);
+
+export const getShowCardFront = createSelector(
   cardDisplayState,
   (c) => c.get('showFront'),
 );
@@ -41,7 +45,7 @@ export const changeCard = (playerName) => (dispatch) => dispatch({
 export const flipCard = () => (dispatch, getState) => dispatch({
   type: FLIP_CARD,
   payload: {
-    showFront: !showCardFront(getState),
+    showFront: !getShowCardFront(getState()),
   },
 });
 

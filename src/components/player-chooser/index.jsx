@@ -25,7 +25,7 @@ const styles = {
     padding: '1vh',
   },
   pressedButton: {
-    borderStyle: 'inset',
+    borderColor: 'black',
   },
 };
 
