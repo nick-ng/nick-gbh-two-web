@@ -2,12 +2,15 @@ import { createReducer } from 'redux-immutablejs';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
-import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../services/contentful';
+import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../interfaces/contentful';
 
-const storeSuffix = '-CONTENT_STORE';
+export const contentList = [
+  'players',
+  'guilds',
+];
 
 // Constants
-export const UPDATE_CONTENT = `UPDATE_CONTENT${storeSuffix}`;
+export const UPDATE_CONTENT = 'UPDATE_CONTENT';
 
 // Initial State
 const initialState = Immutable.fromJS({});

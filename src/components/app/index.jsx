@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 const styles = {
   appStyle: {
-    padding: '0',
+    padding: '1rem',
     fontSize: '1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
   },
   title: {
     padding: '0',
     margin: '1vh 0',
-    fontSize: '10vh',
+    fontSize: '5h',
   },
 };
 

@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 
 import constants from './constants';
 
-import gameRoom from '../services/game-room';
+import gameRoom from '../interfaces/game-room';
 
 // Constants
 const {
