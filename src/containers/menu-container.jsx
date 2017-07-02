@@ -5,17 +5,20 @@ import { connect } from 'react-redux';
 import Menu from '../components/menu';
 
 import { getGameRoom, getNewGameRoom } from '../stores/game-room-store';
+import { fetchImage } from '../stores/image-cache-store';
 
-const MenuContainer = ({ gameId, handleNewGameRequest }) => (
+const MenuContainer = ({ gameId, handleNewGameRequest, loadImage }) => (
   <Menu
     gameId={gameId}
     handleNewGameRequest={handleNewGameRequest}
+    loadImage={loadImage}
   />
 );
 
 MenuContainer.propTypes = {
   gameId: PropTypes.string,
   handleNewGameRequest: PropTypes.func.isRequired,
+  loadImage: PropTypes.func.isRequired,
 };
 
 MenuContainer.defaultProps = {
@@ -28,5 +31,6 @@ export default connect(
   }),
   (dispatch) => ({
     handleNewGameRequest: (coachId) => dispatch(getNewGameRoom(coachId)),
+    loadImage: (imageURL) => dispatch(fetchImage(imageURL)),
   }),
 )(MenuContainer);
