@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import ImageContainer from '../../containers/image-container';
+
 const styles = {
   cardDisplay: {
     border: 'none',
@@ -23,7 +25,7 @@ const CardDisplay = ({ currentPlayer, flipCard, changeCard, showCardFront }) => 
       onClick={flipCard}
     >
       {currentPlayer.size > 0 &&
-        <img
+        <ImageContainer
           style={styles.cardImage}
           alt={currentPlayer.get('fullName')}
           src={currentPlayer.getIn([cardSide, 'url'])}

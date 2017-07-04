@@ -11,17 +11,16 @@ const styles = {
   },
 };
 
-const Menu = ({ handleNewGameRequest, loadImage }) => (
+const Menu = ({ handleNewGameRequest }) => (
   <div style={styles.menu}>
     <MenuButton label={'Host Game'} onClick={handleNewGameRequest} />
     <MenuButton label={'View Cards'} onClick={() => browserHistory.push('/card-viewer')} />
-    <MenuButton label={'Three'} onClick={() => loadImage('http://images.contentful.com/tbkgo5grem8y/OSAz46AIEwwow8cu8MEs8/ac9715828b879d03b1a7678ebcd837f3/harry_f.jpg')} />
+    <MenuButton label={'Three'} />
   </div>
 );
 
 Menu.propTypes = {
   handleNewGameRequest: PropTypes.func.isRequired,
-  loadImage: PropTypes.func.isRequired,
 };
 
 export default Menu;
