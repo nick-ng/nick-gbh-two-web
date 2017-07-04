@@ -19,27 +19,32 @@ export const getImageData = (imageUrl) => createSelector(
 );
 
 // Actions
-export const fetchImage = (imageUrl) => async (dispatch) => {
-  let imageData;
-  let dateRetrieved;
-  const imageEntry = await asyncStorage.getItem(imageUrl);
-  if (imageEntry) {
-    imageData = imageEntry.imageData;
-    dateRetrieved = imageEntry.dateRetrieved;
-  } else {
-    imageData = await readBase64FromUrl(imageUrl);
-    dateRetrieved = new Date();
-    asyncStorage.setItem(imageUrl, { imageData, dateRetrieved });
-  }
+export const reFetchImage = (imageUrl) => async (dispatch) => {
+  const imageEntry = {
+    imageData: await readBase64FromUrl(imageUrl),
+    dateRetrieved: new Date(),
+  };
+  asyncStorage.setItem(imageUrl, imageEntry);
   dispatch({
     type: UPDATE_IMAGE,
     payload: {
-      [imageUrl]: {
-        imageData,
-        dateRetrieved,
-      },
+      [imageUrl]: imageEntry,
     },
   });
+};
+
+export const fetchImage = (imageUrl) => async (dispatch) => {
+  const imageEntry = await asyncStorage.getItem(imageUrl);
+  if (imageEntry) {
+    dispatch({
+      type: UPDATE_IMAGE,
+      payload: {
+        [imageUrl]: imageEntry,
+      },
+    });
+  } else {
+    reFetchImage(imageUrl)(dispatch);
+  }
 };
 
 // Reducers

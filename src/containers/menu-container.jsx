@@ -4,29 +4,37 @@ import { connect } from 'react-redux';
 
 import Menu from '../components/menu';
 
+import { getPreloadProgress, preloadPlayerImages } from '../stores/content-store';
 import { getGameRoom, getNewGameRoom } from '../stores/game-room-store';
 
-const MenuContainer = ({ gameId, handleNewGameRequest }) => (
+const MenuContainer = ({ gameId, handleNewGameRequest, preloadProgress, preloadPlayers }) => (
   <Menu
     gameId={gameId}
     handleNewGameRequest={handleNewGameRequest}
+    preloadProgress={preloadProgress}
+    preloadPlayers={preloadPlayers}
   />
 );
 
 MenuContainer.propTypes = {
   gameId: PropTypes.string,
   handleNewGameRequest: PropTypes.func.isRequired,
+  preloadProgress: PropTypes.number,
+  preloadPlayers: PropTypes.func.isRequired,
 };
 
 MenuContainer.defaultProps = {
   gameId: '',
+  preloadProgress: null,
 };
 
 export default connect(
   (state) => ({
     gameId: getGameRoom(state),
+    preloadProgress: getPreloadProgress(state),
   }),
   (dispatch) => ({
+    preloadPlayers: () => dispatch(preloadPlayerImages),
     handleNewGameRequest: (coachId) => dispatch(getNewGameRoom(coachId)),
   }),
 )(MenuContainer);

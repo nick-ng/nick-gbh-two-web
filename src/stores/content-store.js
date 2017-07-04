@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
 import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../interfaces/contentful';
+import { reFetchImage } from './image-cache-store';
 
 export const contentList = [
   'players',
@@ -11,12 +12,17 @@ export const contentList = [
 
 // Constants
 export const UPDATE_CONTENT = 'UPDATE_CONTENT';
+export const UPDATE_PRELOAD_COUNTER = 'UPDATE_PRELOAD_COUNTER';
 
 // Initial State
-const initialState = Immutable.fromJS({});
+const initialState = Immutable.fromJS({
+  preloadProgress: null,
+});
 
 // Selectors
 const contentState = (state) => state.contentStore;
+
+export const getPreloadProgress = (state) => contentState(state).get('preloadProgress');
 
 export const getContent = (contentName) => createSelector(
   contentState,
@@ -51,7 +57,33 @@ export const updateGuilds = () => async (dispatch) => {
   });
 };
 
+export const preloadPlayerImages = async (dispatch, getState) => {
+  const players = getContent('players')(getState());
+  if (players) {
+    let remainingPlayers = players.size;
+    await dispatch({
+      type: UPDATE_PRELOAD_COUNTER,
+      payload: remainingPlayers,
+    });
+    await players.reduce((promise, player) => {
+      const frontUrl = player.getIn(['cardFront', 'url']);
+      const backUrl = player.getIn(['cardBack', 'url']);
+      return promise
+        .then(() => reFetchImage(frontUrl)(dispatch))
+        .then(() => reFetchImage(backUrl)(dispatch))
+        .then(() => {
+          remainingPlayers -= 1;
+          dispatch({
+            type: UPDATE_PRELOAD_COUNTER,
+            payload: remainingPlayers,
+          });
+        });
+    }, Promise.resolve());
+  }
+};
+
 // Reducers
 export default createReducer(initialState, {
   [UPDATE_CONTENT]: (state, action) => state.merge(Immutable.fromJS(action.payload)),
+  [UPDATE_PRELOAD_COUNTER]: (state, action) => state.set('preloadProgress', action.payload),
 });
