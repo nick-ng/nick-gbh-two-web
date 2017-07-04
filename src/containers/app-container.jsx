@@ -6,6 +6,10 @@ import App from '../components/app';
 
 import { getGameRoom } from '../stores/game-room-store';
 
+import localDb from '../interfaces/local-db';
+
+export const a = localDb;
+
 const AppContainer = ({ gameId, children }) => (
   <App
     gameId={gameId}
