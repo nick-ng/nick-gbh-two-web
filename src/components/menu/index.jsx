@@ -11,16 +11,28 @@ const styles = {
   },
 };
 
-const Menu = ({ handleNewGameRequest }) => (
-  <div style={styles.menu}>
-    <MenuButton label={'Host Game'} onClick={handleNewGameRequest} />
-    <MenuButton label={'View Cards'} onClick={() => browserHistory.push('/card-viewer')} />
-    <MenuButton label={'Three'} />
-  </div>
-);
+const Menu = ({ handleNewGameRequest, preloadPlayers, preloadProgress }) => {
+  let preloadInfo = 'Preload Players';
+  if (typeof preloadProgress === 'number') {
+    preloadInfo = preloadProgress > 0 ? `${preloadProgress} Players Left` : 'Finished Loading Players';
+  }
+  return (
+    <div style={styles.menu}>
+      <MenuButton label={'Host Game'} onClick={handleNewGameRequest} />
+      <MenuButton label={'View Cards'} onClick={() => browserHistory.push('/card-viewer')} />
+      <MenuButton label={preloadInfo} onClick={preloadPlayers} disabled={typeof preloadProgress === 'number'} />
+    </div>
+  );
+};
 
 Menu.propTypes = {
   handleNewGameRequest: PropTypes.func.isRequired,
+  preloadPlayers: PropTypes.func.isRequired,
+  preloadProgress: PropTypes.number,
+};
+
+Menu.defaultProps = {
+  preloadProgress: null,
 };
 
 export default Menu;

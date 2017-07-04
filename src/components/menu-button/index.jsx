@@ -15,9 +15,12 @@ const MenuButton = (props) => {
     onClick,
     label,
   } = props;
+  const cleanedProps = Object.assign({}, props);
+  delete cleanedProps.label;
 
   return (
     <button
+      {...cleanedProps}
       onClick={onClick}
       style={styles.button}
     >
