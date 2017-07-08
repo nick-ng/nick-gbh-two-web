@@ -1,9 +1,9 @@
-import utils from '../utils';
+import { get } from '../utils';
 import config from '../config';
 
 const { contentfulProxyUrl } = config;
 
-const getFromContentfulProxy = (route) => utils.get(`${contentfulProxyUrl}/${route}`);
+const getFromContentfulProxy = (route) => get(`${contentfulProxyUrl}/${route}`);
 
 export const getAllPlayers = () => getFromContentfulProxy('players');
 

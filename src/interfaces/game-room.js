@@ -1,9 +1,8 @@
 import config from '../config';
 
-import utils from '../utils';
+import { get } from '../utils';
 
 const { serverUrl } = config;
-const { get } = utils;
 
 const hostGame = (coachId) => get(`${serverUrl}/newgame`, { coachId });
 

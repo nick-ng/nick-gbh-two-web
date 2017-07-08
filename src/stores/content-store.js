@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 
 import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../interfaces/contentful';
 import { reFetchImage } from './image-cache-store';
+import { changeCard } from './card-display-store';
 
 export const contentList = [
   'players',
@@ -78,7 +79,7 @@ export const preloadPlayerImages = async (dispatch, getState) => {
             payload: remainingPlayers,
           });
         });
-    }, Promise.resolve());
+    }, Promise.resolve()).then(() => changeCard(null)(dispatch));
   }
 };
 

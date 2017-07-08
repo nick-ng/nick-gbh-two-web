@@ -10,16 +10,16 @@ import localDb from '../interfaces/local-db';
 
 export const a = localDb;
 
-const AppContainer = ({ gameId, children }) => (
-  <App
-    gameId={gameId}
-  >
-    {children}
-  </App>
-);
+const AppContainer = (props) => {
+  const { children } = props;
+  return (
+    <App {...props}>
+      {children}
+    </App>
+  );
+};
 
 AppContainer.propTypes = {
-  gameId: PropTypes.string,
   children: PropTypes.node,
 };
 

@@ -11,9 +11,7 @@ const ImageContainer = (props) => {
   delete cleanedProps.loadImage;
   delete cleanedProps.src;
   delete cleanedProps.alt;
-  if (!imageData) {
-    loadImage(src);
-  }
+  loadImage(src);
   return (
     <img
       alt={alt}

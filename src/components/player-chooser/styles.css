@@ -1,0 +1,34 @@
+.playerChooser: {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.playerList: {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.guildHeading: {
+  flex: 1 1 100%;
+  padding: 0;
+  margin: 1vh 0 0;
+  font-size: 3vh;
+}
+
+.button: {
+  font-size: 3vmin;
+  margin: 0.2vh;
+  padding: 1vh;
+  color: black;
+  background-color: lightGrey;
+  border-style: outset;
+}
+
+.pressedButton: {
+  color: white;
+  background-color: dimgrey;
+  border-style: inset;
+}
