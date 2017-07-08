@@ -11,6 +11,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     padding: '0',
+    flex: '0 0 442px',
   },
   cardImage: {
     flex: '1',

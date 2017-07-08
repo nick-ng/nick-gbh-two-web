@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const styles = {
+  playerScroller: {
+    overflowY: 'scroll',
+    flex: '1 1 0',
+    height: '100%',
+  },
   playerChooser: {
     display: 'flex',
     flexDirection: 'column',
@@ -35,29 +40,31 @@ const styles = {
 };
 
 const PlayerChooser = ({ currentPlayerName, changeCard, allPlayers, allGuilds }) => (
-  <div style={styles.playerChooser}>
-    {allGuilds && allPlayers && allGuilds.toList().map((guild) => {
-      const players = allPlayers.filter((player) => player.get('guilds').includes(guild.get('name')));
-      if (players && players.size > 0) {
-        return (
-          <div style={styles.playerList} key={guild.get('name')}>
-            <h3 style={styles.guildHeading}>{guild.get('displayName')}</h3>
-            {players.toList().map((player) => {
-              const style = player.get('name') === currentPlayerName ? Object.assign({}, styles.button, styles.pressedButton) : styles.button;
-              return (
-                <button
-                  style={style}
-                  onClick={() => changeCard(player.get('name'))}
-                  key={player.get('name')}
-                >
-                  {player.get('shortName')}
-                </button>
-              );
-            })}
-          </div>);
-      }
-      return null;
-    })}
+  <div style={styles.playerScroller}>
+    <div style={styles.playerChooser}>
+      {allGuilds && allPlayers && allGuilds.toList().map((guild) => {
+        const players = allPlayers.filter((player) => player.get('guilds').includes(guild.get('name')));
+        if (players && players.size > 0) {
+          return (
+            <div style={styles.playerList} key={guild.get('name')}>
+              <h3 style={styles.guildHeading}>{guild.get('displayName')}</h3>
+              {players.toList().map((player) => {
+                const style = player.get('name') === currentPlayerName ? Object.assign({}, styles.button, styles.pressedButton) : styles.button;
+                return (
+                  <button
+                    style={style}
+                    onClick={() => changeCard(player.get('name'))}
+                    key={player.get('name')}
+                  >
+                    {player.get('shortName')}
+                  </button>
+                );
+              })}
+            </div>);
+        }
+        return null;
+      })}
+    </div>
   </div>
 );
 

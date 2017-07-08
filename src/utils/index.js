@@ -42,7 +42,15 @@ export const readBlobFromUrl = (url) => new Promise((resolve/* , reject */) => {
   oReq.send();
 });
 
-export const blobToBase64 = (blob) => new Promise((resolve, reject) => {
+export const readArrayBufferFromUrl = (url) => new Promise((resolve/* , reject */) => {
+  const oReq = new XMLHttpRequest();
+  oReq.open('GET', url, true);
+  oReq.responseType = 'arraybuffer';
+  oReq.onload = () => resolve(oReq.response);
+  oReq.send();
+});
+
+export const blobToData = (blob) => new Promise((resolve, reject) => {
   if (blob) {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(blob);
@@ -52,9 +60,8 @@ export const blobToBase64 = (blob) => new Promise((resolve, reject) => {
   }
 });
 
-export const readBase64FromUrl = async (url) => blobToBase64(await readBlobFromUrl(url));
+export const readDataFromUrl = async (url) => blobToData(await readBlobFromUrl(url));
 
 export default {
-  get,
   post,
 };

@@ -4,7 +4,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import './style.css';
+import './styles.css';
 import getRouter from './routes';
 import rootReducer from './stores';
 
@@ -12,7 +12,7 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f,
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
   ),
 );
 
