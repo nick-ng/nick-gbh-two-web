@@ -7,11 +7,11 @@ const app = express();
 app.use(compression());
 
 // serve static files
-app.use(express.static('dist'));
+app.use(express.static('build'));
 
 // redirect all requests to index.html
 app.use((req, res) => {
-  res.sendFile(path.resolve(__dirname, './dist/index.html'));
+  res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
 
 // starting listening

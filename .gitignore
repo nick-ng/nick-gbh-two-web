@@ -1,5 +1,9 @@
+# yarn
+yarn.lock
+
 # Build folder
 /dist/*
+/build/*
 
 # Redis
 dump.rdb

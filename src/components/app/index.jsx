@@ -28,7 +28,7 @@ const styles = {
   },
   activeHomeButton: {
     display: 'none',
-  }
+  },
 };
 
 export default function App(props) {
