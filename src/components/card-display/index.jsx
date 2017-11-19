@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-const CardDisplay = ({ currentPlayer, flipCard, changeCard, showCardFront }) => {
+const CardDisplay = ({ currentPlayer, flipCard, changeCard, showCardFront }) => { // eslint-disable-line
   const cardSide = showCardFront ? 'cardFront' : 'cardBack';
   return (
     <button
