@@ -66,20 +66,18 @@ export const preloadPlayerImages = async (dispatch, getState) => {
       type: UPDATE_PRELOAD_COUNTER,
       payload: remainingPlayers,
     });
-    await players.reduce((promise, player) => {
+    await Promise.all(players.map(async (player) => {
       const frontUrl = player.getIn(['cardFront', 'url']);
       const backUrl = player.getIn(['cardBack', 'url']);
-      return promise
-        .then(() => reFetchImage(frontUrl)(dispatch))
-        .then(() => reFetchImage(backUrl)(dispatch))
-        .then(() => {
-          remainingPlayers -= 1;
-          dispatch({
-            type: UPDATE_PRELOAD_COUNTER,
-            payload: remainingPlayers,
-          });
-        });
-    }, Promise.resolve()).then(() => changeCard(null)(dispatch));
+      await reFetchImage(frontUrl)(dispatch);
+      await reFetchImage(backUrl)(dispatch);
+      remainingPlayers -= 1;
+      dispatch({
+        type: UPDATE_PRELOAD_COUNTER,
+        payload: remainingPlayers,
+      });
+    }));
+    changeCard(null)(dispatch);
   }
 };
 
