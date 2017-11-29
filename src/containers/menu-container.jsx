@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import Menu from '../components/menu';
 
-import { getPreloadProgress, preloadPlayerImages } from '../stores/content-store';
 import { getGameRoom, getNewGameRoom } from '../stores/game-room-store';
 
 const MenuContainer = ({ gameId, handleNewGameRequest, preloadProgress, preloadPlayers }) => (
@@ -31,10 +30,8 @@ MenuContainer.defaultProps = {
 export default connect(
   (state) => ({
     gameId: getGameRoom(state),
-    preloadProgress: getPreloadProgress(state),
   }),
   (dispatch) => ({
-    preloadPlayers: () => dispatch(preloadPlayerImages),
     handleNewGameRequest: (coachId) => dispatch(getNewGameRoom(coachId)),
   }),
 )(MenuContainer);
