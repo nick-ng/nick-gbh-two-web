@@ -29,7 +29,7 @@ const CardDisplay = ({ currentPlayer, flipCard, changeCard, showCardFront }) => 
         <ImageContainer
           style={styles.cardImage}
           alt={currentPlayer.get('fullName')}
-          src={currentPlayer.getIn([cardSide, 'url'])}
+          src={`https:${currentPlayer.getIn([cardSide, 'url'])}`}
         />}
     </button>
   );

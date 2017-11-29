@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-immutablejs';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
+import pRetry from 'p-retry';
 
 import getFromContentfulProxy, { getAllPlayers, getAllGuilds } from '../interfaces/contentful';
 import { reFetchImage } from './image-cache-store';
@@ -59,6 +60,7 @@ export const updateGuilds = () => async (dispatch) => {
 };
 
 export const preloadPlayerImages = async (dispatch, getState) => {
+  const options = { retries: 99 };
   const players = getContent('players')(getState());
   if (players) {
     let remainingPlayers = players.size;
@@ -69,8 +71,8 @@ export const preloadPlayerImages = async (dispatch, getState) => {
     await Promise.all(players.map(async (player) => {
       const frontUrl = player.getIn(['cardFront', 'url']);
       const backUrl = player.getIn(['cardBack', 'url']);
-      await reFetchImage(frontUrl)(dispatch);
-      await reFetchImage(backUrl)(dispatch);
+      await pRetry(reFetchImage(frontUrl)(dispatch), options);
+      await pRetry(reFetchImage(backUrl)(dispatch), options);
       remainingPlayers -= 1;
       dispatch({
         type: UPDATE_PRELOAD_COUNTER,
