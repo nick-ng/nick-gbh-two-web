@@ -13,38 +13,22 @@ const styles = {
   },
 };
 
-const Menu = ({ handleNewGameRequest, preloadPlayers, preloadProgress }) => { // eslint-disable-line
-  let preloadInfo = 'Preload Players';
-  let disableViewCards = false;
-  if (typeof preloadProgress === 'number') {
-    preloadInfo = preloadProgress > 0 ? `${preloadProgress} Players Left` : 'Finished Loading Players';
-    disableViewCards = preloadProgress > 0;
-  }
+const Menu = ({ handleNewGameRequest }) => { // eslint-disable-line
   return (
     <div>
       <div style={styles.menu}>
         {/* <MenuButton label={'Host Game'} onClick={handleNewGameRequest} />*/}
         <MenuButton
-          label={disableViewCards ? 'Please Wait For Cards To Load' : 'View Cards'}
+          label={'View Cards'}
           onClick={() => browserHistory.push('/card-viewer')}
-          disabled={disableViewCards}
-        />
-        <MenuButton
-          label={preloadInfo}
-          onClick={preloadPlayers}
-          disabled={typeof preloadProgress === 'number'}
         />
       </div>
-    Warning: Pressing &ldquo;Preload Players&rdquo; will preload about 15 MB of data.
-    If you are accessing this on your phone, consider connecting to Wi-Fi first.
     </div>
   );
 };
 
 Menu.propTypes = {
   handleNewGameRequest: PropTypes.func.isRequired,
-  preloadPlayers: PropTypes.func.isRequired,
-  preloadProgress: PropTypes.number,
 };
 
 Menu.defaultProps = {
