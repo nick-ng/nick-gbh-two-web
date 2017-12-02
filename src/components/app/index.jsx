@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const styles = {
   appStyle: {
-    margin: '0 1rem',
+    margin: '0',
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'row',

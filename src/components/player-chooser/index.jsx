@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 const styles = {
   playerScroller: {
     overflowY: 'scroll',
-    flex: '1 1 0',
+    flex: '1 0 140px',
     height: '100%',
   },
   playerChooser: {

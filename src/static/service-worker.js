@@ -29,7 +29,11 @@ const get = (url, headers = {}) => fetch(url, {
 
 const filesToCache = [
   '/',
-  '/static/js/bundle.js',
+  '/static/js/bundle.js', // dev
+  '/static/js/main.js', // prod
+  '/static/css/main.css',
+  '/favicon.ico',
+  '/images/512.png',
   `${contentfulProxyUrl}/players`,
   `${contentfulProxyUrl}/guilds`,
 ]; // Array of URLs

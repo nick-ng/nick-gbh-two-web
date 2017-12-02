@@ -9,7 +9,7 @@ import MenuButton from '../menu-button';
 const styles = {
   menu: {
     display: 'flex',
-    margin: '1rem 0',
+    margin: '0',
   },
 };
 

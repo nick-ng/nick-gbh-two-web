@@ -63,7 +63,8 @@
     "eslint": "eslint ./src",
     "esflint": "eslint ./src --fix",
     "server": "node ./server.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "simulate": "npm run build && npm run server"
   },
   "jest": {
     "collectCoverageFrom": [
