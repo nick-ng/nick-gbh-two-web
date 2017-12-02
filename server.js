@@ -9,11 +9,6 @@ app.use(compression());
 // serve static files
 app.use(express.static('build'));
 
-// serve service-worker.js
-app.get('/service-worker.js', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './build/service-worker.js'));
-});
-
 // redirect all requests to index.html
 app.use((req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));

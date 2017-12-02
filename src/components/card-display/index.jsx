@@ -11,26 +11,28 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     padding: '0',
-    flex: '0 0 442px',
+    flex: '0 1 auto',
   },
   cardImage: {
     flex: '1',
+    maxWidth: '100%',
+    maxHeight: '100vh',
   },
 };
 
 const CardDisplay = ({ currentPlayer, flipCard, changeCard, showCardFront }) => { // eslint-disable-line
   const cardSide = showCardFront ? 'cardFront' : 'cardBack';
+  const cardUrl = currentPlayer.size > 0 ? `https:${currentPlayer.getIn([cardSide, 'url'])}` : '/images/512.png';
   return (
     <button
       style={styles.cardDisplay}
       onClick={flipCard}
     >
-      {currentPlayer.size > 0 &&
-        <ImageContainer
-          style={styles.cardImage}
-          alt={currentPlayer.get('fullName')}
-          src={`https:${currentPlayer.getIn([cardSide, 'url'])}`}
-        />}
+      <ImageContainer
+        style={styles.cardImage}
+        alt={currentPlayer.get('fullName') || 'Nick\'s Guildball Health Tracker'}
+        src={cardUrl}
+      />
     </button>
   );
 };
