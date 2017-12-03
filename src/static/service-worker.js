@@ -39,6 +39,7 @@ const filesToCache = [
   '/images/512.png',
   `${contentfulProxyUrl}/players`,
   `${contentfulProxyUrl}/guilds`,
+  '/card-viewer',
 ]; // Array of URLs
 
 /*
