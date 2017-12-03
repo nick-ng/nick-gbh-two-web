@@ -24,6 +24,7 @@ const getRouter = (store) => {
     <Router history={history}>
       <Route path="/" component={AppContainer} onEnter={() => loadContent(store)}>
         <IndexRoute component={MenuContainer} />
+        <Route path="/index.html" component={MenuContainer} onEnter={() => loadContent(store)} />
         <Route path="/card-viewer" component={CardViewer} onEnter={() => loadContent(store)} />
       </Route>
     </Router>
