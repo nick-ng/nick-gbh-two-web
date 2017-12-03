@@ -1,4 +1,4 @@
-const cacheName = 'nickGBPWA-step-6-1';
+const cacheName = 'nickGBPWA-001';
 
 const contentfulProxyUrl = 'https://nick-gbh-contentful-proxy-s.herokuapp.com';
 
