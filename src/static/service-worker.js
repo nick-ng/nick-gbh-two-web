@@ -28,7 +28,9 @@ const get = (url, headers = {}) => fetch(url, {
 .then((res) => processResponse(res));
 
 const filesToCache = [
+  '',
   '/',
+  './',
   '/index.html',
   '/mainfest.json',
   '/static/js/bundle.js', // dev
