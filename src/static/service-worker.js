@@ -28,7 +28,6 @@ const get = (url, headers = {}) => fetch(url, {
 .then((res) => processResponse(res));
 
 const filesToCache = [
-  '',
   '/',
   './',
   '/index.html',
