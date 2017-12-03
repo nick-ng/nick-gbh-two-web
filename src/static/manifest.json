@@ -1,6 +1,6 @@
 {
-  "short_name": "Nick GB PWA1",
-  "name": "Nick's Guildball Health Tracker P1",
+  "short_name": "Nick GB PWA2",
+  "name": "Nick's Guildball Health Tracker P2",
   "icons": [
     {
       "src": "favicon.ico",
@@ -28,7 +28,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
